@@ -19,4 +19,7 @@ RUN chown ecs-user /competition/solver_utils.py
 RUN chown ecs-user /competition/replace_solver.py 
 COPY --chown=ecs-user /worker /competition
 
+COPY --chown=ecs-user /cleanup /competition
+RUN chmod +x /competition/cleanup
 RUN chmod +x /competition/worker
+USER ecs-user

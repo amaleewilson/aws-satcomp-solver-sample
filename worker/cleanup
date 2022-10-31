@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "Cleaning up: Killing all worker processes"
+pkill -9 orted
+pkill -9 cvc5 
