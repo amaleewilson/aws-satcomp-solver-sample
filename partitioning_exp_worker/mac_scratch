@@ -1,0 +1,33 @@
+aws --profile blab ecr get-login-password --region us-west-1 | docker login --username AWS --password-stdin 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-cloud-leader
+
+aws --profile blab ecr get-login-password --region us-west-1 | docker login --username AWS --password-stdin 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-cloud-worker
+
+cd /Users/amaleewilson/aws-satcomp-solver-sample/leader
+docker build -t cvc5:leader .
+docker tag cvc5:leader 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-cloud-leader
+docker push 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-cloud-leader
+
+
+cd /Users/amaleewilson/aws-satcomp-solver-sample/worker
+docker build -t cvc5:worker .
+docker tag cvc5:worker 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-cloud-worker
+docker push 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-cloud-worker
+
+
+aws --profile blab s3 cp test.smt2 s3://127312632904-us-west-1-satcompbucket
+
+
+sed '/(check-sat)/Q' 6moves_mti_6-Atd_00004_bmc.smt2
+
+sed -n -e '/(check-sat)/,$p' 6moves_mti_6-Atd_00004_bmc.smt2
+
+./create-solver-infrastructure --profile blab --project cvc5-cloud --instance m6i.4xlarge --memory 61000 --ami ami-022ed07b73d6b46b2 --update True
+
+printf "$( sed '/(check-sat)/Q' 6moves_mti_6-Atd_00004_bmc.smt2 )\n$(echo mything)\n$(sed -n -e '/(check-sat)/,$p' 6moves_mti_6-Atd_00004_bmc.smt2)\n"  | ./cvc5/build/bin/cvc5
+
+
+./send_message --profile blab --location  s3://127312632904-us-west-1-satcompbucket/_functions1.i_3_5_2.bpl_11.smt2 --workers 8
+./send_message --profile blab --location s3://127312632904-us-west-1-satcompbucket/bench_10002.smt2 --workers 2
+./send_message --profile blab --location s3://127312632904-us-west-1-satcompbucket/digital-estimation-convergence-bmc-fwd.smt2 --workers 2
+./send_message --profile blab --location s3://127312632904-us-west-1-satcompbucket/extensions.smt2 --workers 2
+./send_message --profile blab --location s3://127312632904-us-west-1-satcompbucket/modulus_true-unreach-call_true-no-overflow.i_242.smt2 --workers 2

@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "Cleaning up leader: Killing all leader processes (mpirun, cvc5)"
+pkill -9 mpirun
+pkill -9 cvc5

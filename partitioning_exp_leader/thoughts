@@ -1,0 +1,31 @@
+thoughts:
+
+
+Make replace_solver explicitly spawn the worker
+
+if rank == 0:
+    do partitioning
+    spawn workers and send messages
+    receive messages
+
+else:
+    receive message
+    do solving
+    send message
+
+docker image rm - f 0b5882eb1c92
+docker image rm - f b8cc421ae53a
+docker image rm - f 273d71c45314
+docker image rm - f 9af634781c71
+docker image rm - f 6e6025aef8ce
+docker image rm - f 20052b3c85ec
+docker image rm - f db475fae1085
+docker image rm - f 1db0bf874921
+docker image rm - f b92c192a376c
+docker image rm - f 5eb7173ee091
+docker image rm - f eb323bef04cb
+docker image rm - f 8bdc3f1c70e5
+docker image rm - f 56734d519aa2
+docker image rm - f a7571b944c56
+docker image rm - f f3c2c9c9adb6
+docker image rm - f 8a18b27c4811

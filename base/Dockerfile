@@ -12,7 +12,9 @@ RUN /usr/bin/python3.8 -m pip install mpi4py
 RUN git clone https://github.com/amaleewilson/cvc5.git
 WORKDIR cvc5
 RUN git fetch
-RUN git checkout 61828785f9a0212ac4e437b191e418ad1946a4dc
+#RUN git checkout 61828785f9a0212ac4e437b191e418ad1946a4dc
+RUN git checkout new-partitioning
+RUN git pull
 # Checkout the latest partitioning branch? 
 RUN ./configure.sh --auto-download --static --static-binary
 RUN cd build && make -j4 && cd ..

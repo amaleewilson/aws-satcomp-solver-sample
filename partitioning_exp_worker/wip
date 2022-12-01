@@ -1,0 +1,74 @@
+cd /Users/amaleewilson/aws-satcomp-solver-sample/partitioning_exp_leader/
+docker build -t cvc5:partitioning-leader2 .
+cd /Users/amaleewilson/aws-satcomp-solver-sample/partitioning_exp_worker/
+docker build -t cvc5:partitioning-worker2 .
+
+docker tag cvc5:partitioning-leader2 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-seq-2-leader; docker tag cvc5:partitioning-worker2 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-seq-2-worker; docker push 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-seq-2-worker; docker push 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-seq-2-leader ; ./update_instances --profile blab --option setup --project cvc5-seq-2 --workers 8
+
+make changes, update the send_message script
+
+cd /Users/amaleewilson/aws-satcomp-solver-sample/partitioning_exp_leader/
+docker build -t cvc5:partitioning-leader3 .
+cd /Users/amaleewilson/aws-satcomp-solver-sample/partitioning_exp_worker/
+docker build -t cvc5:partitioning-worker3 .
+
+docker tag cvc5:partitioning-leader3 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-seq-3-leader 
+docker tag cvc5:partitioning-worker3 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-seq-3-worker
+docker push 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-seq-3-worker 
+docker push 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-seq-3-leader  
+python3 update_instances --profile blab --option setup --project cvc5-seq-3 --workers 8
+
+WAIT FOR STARTUP 
+
+/Users/amaleewilson/scaling-doodle/send_selected 
+
+make changes
+
+cd /Users/amaleewilson/aws-satcomp-solver-sample/partitioning_exp_leader/
+docker build -t cvc5:partitioning-leader4 .
+cd /Users/amaleewilson/aws-satcomp-solver-sample/partitioning_exp_worker/
+docker build -t cvc5:partitioning-worker4 .
+
+docker tag cvc5:partitioning-leader4 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-seq-4-leader 
+docker tag cvc5:partitioning-worker4 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-seq-4-worker
+docker push 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-seq-4-worker 
+docker push 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-seq-4-leader  
+python3 update_instances --profile blab --option setup --project cvc5-seq-4 --workers 8
+
+WAIT FOR STARTUP 
+
+/Users/amaleewilson/scaling-doodle/send_selected 
+
+make changes
+
+cd /Users/amaleewilson/aws-satcomp-solver-sample/partitioning_exp_leader/
+docker build -t cvc5:partitioning-leader5 .
+cd /Users/amaleewilson/aws-satcomp-solver-sample/partitioning_exp_worker/
+docker build -t cvc5:partitioning-worker5 .
+
+docker tag cvc5:partitioning-leader5 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-seq-5-leader 
+docker tag cvc5:partitioning-worker5 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-seq-5-worker
+docker push 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-seq-5-worker 
+docker push 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-seq-5-leader  
+python3 update_instances --profile blab --option setup --project cvc5-seq-5 --workers 8
+
+WAIT FOR STARTUP 
+
+/Users/amaleewilson/scaling-doodle/send_selected 
+
+make changes
+
+cd /Users/amaleewilson/aws-satcomp-solver-sample/partitioning_exp_leader/
+docker build -t cvc5:partitioning-leader6 .
+cd /Users/amaleewilson/aws-satcomp-solver-sample/partitioning_exp_worker/
+docker build -t cvc5:partitioning-worker6 .
+
+docker tag cvc5:partitioning-leader6 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-seq-6-leader 
+docker tag cvc5:partitioning-worker6 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-seq-6-worker
+docker push 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-seq-6-worker 
+docker push 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-seq-6-leader  
+python3 update_instances --profile blab --option setup --project cvc5-seq-6 --workers 8
+
+WAIT FOR STARTUP 
+
+/Users/amaleewilson/scaling-doodle/send_selected 
