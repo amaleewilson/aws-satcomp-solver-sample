@@ -72,3 +72,5 @@ python3 update_instances --profile blab --option setup --project cvc5-seq-6 --wo
 WAIT FOR STARTUP 
 
 /Users/amaleewilson/scaling-doodle/send_selected 
+
+

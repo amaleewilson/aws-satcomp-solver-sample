@@ -153,6 +153,7 @@ mpi_info = MPI.Info.Create()
 
 
 # #VERSION 2.2 lemma cubes without prioritization, WITH ZLL
+# NOTE: messed this up because forgot to add the produce-learned-literals flag!
 # partitioner_options = " --append-learned-literals-to-cubes --partition-when tlimit --partition-tlimit 30 "
 # number_of_partitions = 8
 # checks_before_partition = "1"
@@ -160,12 +161,240 @@ mpi_info = MPI.Info.Create()
 # strategy = "lemma-cubes"
 
 # #VERSION 4.2 heap cubes without prioritization, WITH ZLL
-partitioner_options = " --append-learned-literals-to-cubes --partition-when tlimit --partition-tlimit 30 "
-number_of_partitions = 8
+# NOTE: messed this up because forgot to add the produce-learned-literals flag!
+# partitioner_options = " --append-learned-literals-to-cubes --partition-when tlimit --partition-tlimit 30 "
+# number_of_partitions = 8
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "heap-cubes"
+
+# 12/1 VERSION 1: lemma cubes without prioritization and with ZLL
+# partitioner_options = " --produce-learned-literals --append-learned-literals-to-cubes --partition-when tlimit --partition-tlimit 30 --partition-start-time 30 "
+# number_of_partitions = 8
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "lemma-cubes"
+
+
+# 12/1 VERSION DNC 2: Decision DNC (no backup)
+# partitioner_options = " --partition-when tlimit --partition-tlimit 180 --partition-start-time 30 --partition-time-interval 10 "
+# number_of_partitions = 8
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "decision-dncs"
+
+# 12/1 VERSION DNC 3: Heap DNC (no backup)
+# partitioner_options = " --partition-when tlimit --partition-tlimit 180 --partition-start-time 30 --partition-time-interval 10 "
+# number_of_partitions = 8
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "heap-dncs"
+
+# 12/1 VERSION DNC 4: Lemma DNC (no backup, clear only used lemmas)
+# partitioner_options = " --partition-when tlimit --partition-tlimit 180 --partition-start-time 30 --partition-time-interval 10 "
+# number_of_partitions = 8
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "lemma-dncs"
+# 
+# # 12/1 VERSION DNC 5: Lemma DNC (no backup, clear all lemmas) 
+# partitioner_options = " --partition-when tlimit --partition-tlimit 180 --partition-start-time 30 --partition-time-interval 10 --clear-all-lemmas "
+# number_of_partitions = 8
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "lemma-dncs"
+
+###### 12/2 progressive DNC experiments
+# 12/2 VERSION DNC 1: Decision DNC progressive (no backup)
+# partitioner_options = " --partition-when tlimit --partition-tlimit 180 --partition-start-time 30 --partition-time-interval 10 --max-conflict-size 8 --min-conflict-size 1 --conflict-size-interval 1 --progressive-dncs "
+# number_of_partitions = 8
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "decision-dncs"
+
+# 12/2 VERSION DNC 2: Heap DNC progressive (no backup)
+# partitioner_options = " --partition-when tlimit --partition-tlimit 180 --partition-start-time 30 --partition-time-interval 10 --max-conflict-size 8 --min-conflict-size 1 --conflict-size-interval 1 --progressive-dncs "
+# number_of_partitions = 8
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "heap-dncs"
+
+# 12/2 VERSION DNC 3: Lemma DNC progressive (no backup, clear only used lemmas)
+# partitioner_options = " --partition-when tlimit --partition-tlimit 180 --partition-start-time 30 --partition-time-interval 10 --max-conflict-size 8 --min-conflict-size 1 --conflict-size-interval 1 --progressive-dncs "
+# number_of_partitions = 8
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "lemma-dncs"
+# 
+# # 12/2 VERSION DNC 4: Lemma DNC progressive (no backup, clear all lemmas) 
+# partitioner_options = " --partition-when tlimit --partition-tlimit 180 --partition-start-time 30 --partition-time-interval 10 --clear-all-lemmas --max-conflict-size 8 --min-conflict-size 1 --conflict-size-interval 1 --progressive-dncs "
+# number_of_partitions = 8
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "lemma-dncs"
+# 
+# # 12/2 VERSION DNC 5: Lemma DNC progressive (no backup, clear only used lemmas) WITH ZLL 
+# partitioner_options = " --partition-when tlimit --partition-tlimit 180 --partition-start-time 30 --partition-time-interval 10 --produce-learned-literals --append-learned-literals-to-cubes --max-conflict-size 8 --min-conflict-size 1 --conflict-size-interval 1 --progressive-dncs "
+# number_of_partitions = 8
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "lemma-dncs"
+
+# # 12/5 VERSION 1: Lemma DNC progressive (no backup, clear only used lemmas) WITH ZLL, max conflict size of 16, 16 partitions
+# partitioner_options = " --partition-when tlimit --partition-tlimit 270 --partition-start-time 30 --partition-time-interval 10 --produce-learned-literals --append-learned-literals-to-cubes --max-conflict-size 16 --min-conflict-size 1 --conflict-size-interval 1 --progressive-dncs "
+# number_of_partitions = 16
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "lemma-dncs"
+
+# # 12/5 VERSION 2: Lemma DNC progressive (no backup, clear only used lemmas) WITH ZLL, max conflict size of 8, 16 partitions  
+# partitioner_options = " --partition-when tlimit --partition-tlimit 270 --partition-start-time 30 --partition-time-interval 10 --produce-learned-literals --append-learned-literals-to-cubes --max-conflict-size 8 --min-conflict-size 1 --conflict-size-interval 1 --progressive-dncs "
+# number_of_partitions = 16
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "lemma-dncs"
+
+# # 12/6 VERSION 1: Lemma DNC progressive (no backup, clear only used lemmas) WITH ZLL, max conflict size of 16, 16 partitions
+# partitioner_options = " --partition-when tlimit --partition-tlimit 270 --partition-start-time 30 --partition-time-interval 10 --produce-learned-literals --append-learned-literals-to-cubes --max-conflict-size 4 --min-conflict-size 1 --conflict-size-interval 1 --progressive-dncs "
+# number_of_partitions = 16
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "lemma-dncs"
+
+# # 12/6 VERSION 2: Lemma DNC progressive (no backup, clear only used lemmas) WITH ZLL, max conflict size of 8, 16 partitions  
+# partitioner_options = " --partition-when tlimit --partition-tlimit 270 --partition-start-time 30 --produce-learned-literals --append-learned-literals-to-cubes "
+# number_of_partitions = 16
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "lemma-cubes"
+
+# 12/7 VERSION 1: Lemma DNC (no backup, clear only used lemmas)
+# partitioner_options = " --partition-when tlimit --partition-tlimit 270 --partition-start-time 30 --partition-time-interval 10 "
+# number_of_partitions = 16
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "lemma-dncs"
+
+# 12/7 VERSION 2: Lemma DNC (no backup, clear only used lemmas)
+# partitioner_options = " --partition-when tlimit --partition-tlimit 30 --partition-start-time 30 "
+# number_of_partitions = 16
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "heap-cubes"
+
+# 12/27 VERSION 1: lemma cubes without prioritization, 2
+# partitioner_options = " --partition-when tlimit --partition-tlimit 30 "
+# number_of_partitions = 2
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "lemma-cubes"
+
+# 12/27 VERSION 2: lemma cubes without prioritization, 4
+# partitioner_options = " --partition-when tlimit --partition-tlimit 30 "
+# number_of_partitions = 4
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "lemma-cubes"
+
+# 12/27 VERSION 3: lemma cubes without prioritization, 8
+# partitioner_options = " --partition-when tlimit --partition-tlimit 30 "
+# number_of_partitions = 8
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "lemma-cubes"
+
+# 12/27 VERSION 4: lemma cubes without prioritization, 16
+# partitioner_options = " --partition-when tlimit --partition-tlimit 30 "
+# number_of_partitions = 16
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "lemma-cubes"
+
+# # 12/28 VERSION 1: Lemma DNC progressive (no backup, clear only used lemmas) WITH ZLL, 2 partitions
+# partitioner_options = " --partition-when tlimit --partition-tlimit 270 --partition-start-time 30 --partition-time-interval 10 --produce-learned-literals --append-learned-literals-to-cubes --max-conflict-size 2 --min-conflict-size 1 --conflict-size-interval 1 --progressive-dncs "
+# number_of_partitions = 2
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "lemma-dncs"
+
+# # 12/28 VERSION 1: Lemma DNC progressive (no backup, clear only used lemmas) WITH ZLL, 4 partitions
+# partitioner_options = " --partition-when tlimit --partition-tlimit 270 --partition-start-time 30 --partition-time-interval 10 --produce-learned-literals --append-learned-literals-to-cubes --max-conflict-size 4 --min-conflict-size 1 --conflict-size-interval 1 --progressive-dncs "
+# number_of_partitions = 4
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "lemma-dncs"
+
+# # 12/28 VERSION 1: Lemma DNC progressive (no backup, clear only used lemmas) WITH ZLL, 8 partitions
+# partitioner_options = " --partition-when tlimit --partition-tlimit 270 --partition-start-time 30 --partition-time-interval 10 --produce-learned-literals --append-learned-literals-to-cubes --max-conflict-size 8 --min-conflict-size 1 --conflict-size-interval 1 --progressive-dncs "
+# number_of_partitions = 8
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "lemma-dncs"
+
+# # 12/28 VERSION 1: Lemma DNC progressive (no backup, clear only used lemmas) WITH ZLL, 16 partitions
+# partitioner_options = " --partition-when tlimit --partition-tlimit 270 --partition-start-time 30 --partition-time-interval 10 --produce-learned-literals --append-learned-literals-to-cubes --max-conflict-size 16 --min-conflict-size 1 --conflict-size-interval 1 --progressive-dncs "
+# number_of_partitions = 16
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "lemma-dncs"
+
+
+# # 12/29 VERSION 1 heap cubes without prioritization, 2
+# partitioner_options = " --partition-when tlimit --partition-tlimit 30 "
+# number_of_partitions = 2
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "heap-cubes"
+
+# # 12/29 VERSION 2 heap cubes without prioritization, 4
+# partitioner_options = " --partition-when tlimit --partition-tlimit 30 "
+# number_of_partitions = 4
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "heap-cubes"
+
+# # 12/29 VERSION 1 heap cubes without prioritization, 8
+# partitioner_options = " --partition-when tlimit --partition-tlimit 30 "
+# number_of_partitions = 8
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "heap-cubes"
+
+# # 12/29 VERSION 4 heap cubes without prioritization, 16
+# partitioner_options = " --partition-when tlimit --partition-tlimit 30 "
+# number_of_partitions = 16
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "heap-cubes"
+
+
+# # 12/29 VERSION 2.1: heap DNC  (no backup, clear only used lemmas) WITH ZLL, 2 partitions
+# partitioner_options = " --partition-when tlimit --partition-tlimit 270 --partition-start-time 30 --partition-time-interval 10 --max-conflict-size 1 --min-conflict-size 1 --conflict-size-interval 1 "
+# number_of_partitions = 2
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "heap-dncs"
+
+# # 12/29 VERSION 2.2: heap DNC  (no backup, clear only used lemmas) WITH ZLL, 4 partitions
+# partitioner_options = " --partition-when tlimit --partition-tlimit 270 --partition-start-time 30 --partition-time-interval 10 --max-conflict-size 2 --min-conflict-size 2 --conflict-size-interval 1  "
+# number_of_partitions = 4
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "heap-dncs"
+
+# # 12/29 VERSION 2.3: heap DNC  (no backup, clear only used lemmas) WITH ZLL, 8 partitions
+# partitioner_options = " --partition-when tlimit --partition-tlimit 270 --partition-start-time 30 --partition-time-interval 10 --max-conflict-size 3 --min-conflict-size 3 --conflict-size-interval 1  "
+# number_of_partitions = 8
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "heap-dncs"
+
+# # 12/29 VERSION 2.4: heap DNC  (no backup, clear only used lemmas) WITH ZLL, 16 partitions
+partitioner_options = " --partition-when tlimit --partition-tlimit 270 --partition-start-time 30 --partition-time-interval 10 --max-conflict-size 4 --min-conflict-size 4 --conflict-size-interval 1  "
+number_of_partitions = 16
 checks_before_partition = "1"
 checks_between_partitions = "1"
-strategy = "heap-cubes"
-
+strategy = "heap-dncs"
 
 # The timeout used for the partitioning itself
 partitioning_timeout = 300000

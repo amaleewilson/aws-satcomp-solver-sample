@@ -9,7 +9,7 @@ echo $2
 # I think we really want np to be the number of partitions (plus one?) in the case 
 # of a single layer of partitioning. Additionally, bind to socket so that
 # each instance gets full memory usage. 
-mpiexec -n 9 --mca btl_tcp_if_include eth0  --allow-run-as-root \
+mpiexec -n 17 --mca btl_tcp_if_include eth0  --allow-run-as-root \
   --hostfile $1  --report-bindings \
   python3.8 /competition/replace_solver.py /competition/cvc5 $2 $1
 
