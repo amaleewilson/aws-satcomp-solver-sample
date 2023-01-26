@@ -1,0 +1,28 @@
+aws --profile barrettlab ecr get-login-password --region us-west-1 | docker login --username AWS --password-stdin 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-cloud-leader
+
+aws --profile barrettlab ecr get-login-password --region us-west-1 | docker login --username AWS --password-stdin 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-cloud-worker
+
+cd /home/amalee/aws-satcomp-solver-sample/leader
+docker build -t cvc5:leader .
+docker tag cvc5:leader 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-cloud-leader
+docker push 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-cloud-leader
+
+
+cd /home/amalee/aws-satcomp-solver-sample/worker
+docker build -t cvc5:worker .
+docker tag cvc5:worker 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-cloud-worker
+docker push 127312632904.dkr.ecr.us-west-1.amazonaws.com/cvc5-cloud-worker
+
+
+aws --profile barrettlab s3 cp test.smt2 s3://127312632904-us-west-1-satcompbucket
+
+
+sed '/(check-sat)/Q' 6moves_mti_6-Atd_00004_bmc.smt2
+
+sed -n -e '/(check-sat)/,$p' 6moves_mti_6-Atd_00004_bmc.smt2
+
+
+
+printf "$( sed '/(check-sat)/Q' 6moves_mti_6-Atd_00004_bmc.smt2 )\n$(echo mything)\n$(sed -n -e '/(check-sat)/,$p' 6moves_mti_6-Atd_00004_bmc.smt2)\n"  | ./cvc5/build/bin/cvc5
+
+printf "$( sed '/(check-sat)/Q' /home/amalee/aws-batch-comp-infrastructure-sample/test.smt2 ) \n$(echo \( assert \(let \(\(_let_1 \(* \(- 1\) motzkin_1183_3\)\)\) \(let \(\(_let_2 \(* \(- 1\) motzkin_1175_3\)\)\) \(let \(\(_let_3 \(* \(- 1\) motzkin_1183_4\)\)\) \(let \(\(_let_4 \(* \(- 1\) motzkin_1172_0\)\)\) \(let \(\(_let_5 \(* \(- 1\) motzkin_1183_0\)\)\) \(let \(\(_let_6 \(* \(- 1\) motzkin_1180_0\)\)\) \(let \(\(_let_7 \(* \(- 1\) motzkin_1191_4\)\)\) \(let \(\(_let_8 \(* \(- 1\) motzkin_1191_2\)\)\) \(let \(\(_let_9 \(* \(- 1\) motzkin_1191_0\)\)\) \(let \(\(_let_10 \(* \(- 1\) motzkin_1191_3\)\)\) \(let \(\(_let_11 \(* \(- 1\) motzkin_1188_0\)\)\) \(let \(\(_let_12 \(* \(- 1\) motzkin_1175_4\)\)\) \(let \(\(_let_13 \(* \(- 1\) motzkin_1175_0\)\)\) \(and \(>= \(+ motzkin_1175_0 _let_2 motzkin_1175_4\) 0\) \(>= \(+ si1103c _let_2 motzkin_1175_4\) 0\) \(>= \(+ motzkin_1172_0 motzkin_1175_3 _let_12\) 0\) \(>= \(+ _let_4 _let_2 motzkin_1175_4\) 0\) \(>= \(+ _let_4 motzkin_1175_1 \(* \(- 1\) motzkin_1175_2\)\) 0\) \(>= _let_13 0\) \(>= \(+ motzkin_1172_0 _let_13 motzkin_1175_3 _let_12\) 0\) \(>= \(+ motzkin_1191_0 _let_10 motzkin_1191_4\) 0\) \(>= \(+ motzkin_1188_0 _let_9 motzkin_1191_3 _let_7\) 0\) \(>= \(+ _let_11 _let_10 motzkin_1191_4\) 0\) \(>= \(+ _let_11 motzkin_1191_0 _let_10 motzkin_1191_4\) 0\) \(>= \(+ motzkin_1188_0 \(* \(- 1\) motzkin_1191_1\) motzkin_1191_2\) 0\) \(>= _let_5 0\) \(>= \(+ _let_11 motzkin_1191_1 _let_8\) 0\) \(>= \(+ si1111c _let_10 motzkin_1191_4\) 0\) \(>= \(+ _let_6 motzkin_1183_1 \(* \(- 1\) motzkin_1183_2\)\) 0\) \(>= \(+ _let_10 motzkin_1191_4\) 0\) \(>= \(+ motzkin_1172_0 \(* \(- 1\) motzkin_1175_1\) motzkin_1175_2\) 0\) \(>= _let_9 0\) \(>= \(+ motzkin_1191_1 _let_8\) 0\) \(>= \(+ _let_1 motzkin_1183_4\) 0\) \(>= \(+ motzkin_1188_0 motzkin_1191_3 _let_7\) 0\) \(>= \(+ _let_6 motzkin_1183_0 _let_1 motzkin_1183_4\) 0\) \(>= \(+ _let_6 _let_1 motzkin_1183_4\) 0\) \(>= \(+ motzkin_1180_0 _let_5 motzkin_1183_3 _let_3\) 0\) \(>= \(+ _let_4 motzkin_1175_0 _let_2 motzkin_1175_4\) 0\) \(>= \(+ motzkin_1180_0 motzkin_1183_3 _let_3\) 0\) \(>= \(+ si1117c \(* \(- 1\) motzkin_1201_3\) motzkin_1201_4\) 0\) \(>= \(+ motzkin_1180_0 \(* \(- 1\) motzkin_1183_1\) motzkin_1183_2\) 0\) \(>= \(+ _let_2 motzkin_1175_4\) 0\) \(>= \(+ si1107c _let_1 motzkin_1183_4\) 0\) \(>= \(+ motzkin_1183_0 _let_1 motzkin_1183_4\) 0\) \(and \(>= \(+ rank0_main_y rank3_main_y rank4_main_y rank5_main_y \(* \(- 1\) motzkin_1108_1\) motzkin_1108_2 \(* \(- 1\) motzkin_1108_3\) motzkin_1108_4 \(* \(- 1\) motzkin_1184_0\)\) 0\) \(>= \(+ \(* \(- 1\) rank0_main_x\) \(* \(- 1\) rank2_main_x\) \(* \(- 1\) motzkin_1108_0\) \(* 2 motzkin_1108_1\) \(* \(- 2\) motzkin_1108_2\) motzkin_1184_0\) 0\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\))\n$(sed -n -e '/(check-sat)/,$p' /home/amalee/aws-batch-comp-infrastructure-sample/test.smt2)\n" | /home/amalee/cvc5/build/bin/cvc5 --lang=smt2

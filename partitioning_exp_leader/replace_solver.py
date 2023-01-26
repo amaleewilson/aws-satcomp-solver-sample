@@ -390,11 +390,88 @@ mpi_info = MPI.Info.Create()
 # strategy = "heap-dncs"
 
 # # 12/29 VERSION 2.4: heap DNC  (no backup, clear only used lemmas) WITH ZLL, 16 partitions
-partitioner_options = " --partition-when tlimit --partition-tlimit 270 --partition-start-time 30 --partition-time-interval 10 --max-conflict-size 4 --min-conflict-size 4 --conflict-size-interval 1  "
+# partitioner_options = " --partition-when tlimit --partition-tlimit 270 --partition-start-time 30 --partition-time-interval 10 --max-conflict-size 4 --min-conflict-size 4 --conflict-size-interval 1  "
+# number_of_partitions = 16
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "heap-dncs"
+# 
+# # 1/6 VERSION 1: heap cubes
+# partitioner_options = " --partition-when tlimit --partition-tlimit 30 "
+# number_of_partitions = 4
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "heap-cubes"
+
+# 1/6 32p version 1: heap cubes
+# partitioner_options = " --partition-when tlimit --partition-tlimit 30 "
+# number_of_partitions = 32
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "heap-cubes"
+
+# 1/6 32p version 2: prog lemma dnc
+# partitioner_options = " --partition-when tlimit --partition-tlimit 270 --partition-start-time 30 --partition-time-interval 5 --produce-learned-literals --append-learned-literals-to-cubes --max-conflict-size 32 --min-conflict-size 3 --conflict-size-interval 8 --progressive-dncs "
+# number_of_partitions = 32
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "lemma-dncs"
+
+# 1/8 32p version 1: prog lemma dnc
+# partitioner_options = " --partition-when tlimit --partition-tlimit 270 --partition-start-time 30 --partition-time-interval 5 --produce-learned-literals --append-learned-literals-to-cubes --max-conflict-size 32 --min-conflict-size 1 --conflict-size-interval 1 --progressive-dncs "
+# number_of_partitions = 32
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "lemma-dncs"
+
+# Jan 11 version 1
+# Progressive DNC using lemmas and clearing all lemmas between partitions. no ZLL
+# partitioner_options = " --partition-when tlimit --partition-tlimit 270 --partition-start-time 30 --partition-time-interval 10 --clear-all-lemmas --max-conflict-size 16 --min-conflict-size 1 --conflict-size-interval 1 --progressive-dncs "
+# number_of_partitions = 16
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "lemma-dncs"
+
+# Jan 17 version PDNC using lemmas, clearing all lemmas between partitions with ZLL
+# project 3 (1 is for sequential cvc5, 2 is for opensmt)
+# partitioner_options = (" --partition-when tlimit --partition-tlimit 270 --partition-start-time 30 "
+#                       " --partition-time-interval 10 --clear-all-lemmas --max-conflict-size 16 --min-conflict-size 1 "
+#                       " --conflict-size-interval 1 --progressive-dncs " 
+#                       " --produce-learned-literals --append-learned-literals-to-cubes ")
+# number_of_partitions = 16
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "lemma-dncs"
+
+# Jan 17 version heap cubes, no zll
+# project 4
+# partitioner_options = (" --partition-when tlimit --partition-tlimit 30 " )
+# number_of_partitions = 16
+# checks_before_partition = "1"
+# checks_between_partitions = "1"
+# strategy = "heap-cubes"
+
+# Jan 18 version PDNC using lemmas, clearing only used lemmas between partitions with ZLL
+# project 5 NO LONGER 
+# # partitioner_options = (" --partition-when tlimit --partition-tlimit 270 --partition-start-time 30 "
+# #                       " --partition-time-interval 10 --max-conflict-size 16 --min-conflict-size 1 "
+# #                       " --conflict-size-interval 1 --progressive-dncs " 
+# #                       " --produce-learned-literals --append-learned-literals-to-cubes ")
+# # number_of_partitions = 16
+# # checks_before_partition = "1"
+# # checks_between_partitions = "1"
+# # strategy = "lemma-dncs"
+
+
+# Jan 23 version heap cubes, WITH zll
+# project 5 
+partitioner_options = (" --partition-when tlimit --partition-tlimit 30 " 
+            " --produce-learned-literals --append-learned-literals-to-cubes ")
 number_of_partitions = 16
 checks_before_partition = "1"
 checks_between_partitions = "1"
-strategy = "heap-dncs"
+strategy = "heap-cubes"
+
 
 # The timeout used for the partitioning itself
 partitioning_timeout = 300000

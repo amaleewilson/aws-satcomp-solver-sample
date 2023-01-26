@@ -1,0 +1,18 @@
+thoughts: 
+
+solver(.py) partitions
+
+or
+
+solver.py runs mpi, 0th rank partitions, then workers receive partitions
+
+
+Have solver.py partition and then run mpi with the hostfiles.
+
+worker needs to know
+- the original input file
+- which partition to use
+
+MPI scatter may be better for the partitions - all partitions? 
+    Or maybe you could do a looping thing that also achieves the mpipool functionality?
+Is mPI scatter better for the original file? 

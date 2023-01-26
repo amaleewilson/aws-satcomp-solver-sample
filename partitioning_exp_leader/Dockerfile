@@ -3,7 +3,7 @@ FROM cvc5_base AS builder
 USER root
 
 ################### Extract cvc5 in run stage
-FROM satcomp-base:leader4 AS cvc5_liaison
+FROM satcomp-base:leader5 AS cvc5_liaison
 WORKDIR /
 
 RUN /usr/bin/python3.8 -m pip install mpi4py

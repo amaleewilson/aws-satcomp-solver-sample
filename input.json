@@ -1,4 +1,6 @@
 {
-"problem_path": "/tmp/_functions1.i_3_5_2.bpl_11.smt2",
-"worker_node_ips": ["leader", "worker"]
+    "problem_path": "/tmp/_functions1.i_3_5_2.bpl_11.smt2",
+    "worker_node_ips": [
+        "leader"
+    ]
 }
