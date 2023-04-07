@@ -463,6 +463,17 @@ mpi_info = MPI.Info.Create()
 # # strategy = "lemma-dncs"
 
 
+# Jan 15 version PDNC using lemmas, clearing all lemmas between partitions with ZLL
+# project 7 
+partitioner_options = (" --partition-when tlimit --partition-tlimit 270 --partition-start-time 15 "
+                      " --partition-time-interval 1 --clear-all-lemmas --max-conflict-size 128 --min-conflict-size 1 "
+                      " --conflict-size-interval 1 --progressive-dncs " 
+                      " --produce-learned-literals --append-learned-literals-to-cubes ")
+number_of_partitions = 128
+checks_before_partition = "1"
+checks_between_partitions = "1"
+strategy = "lemma-dncs"
+
 # Jan 23 version heap cubes, WITH zll
 # project 5 
 partitioner_options = (" --partition-when tlimit --partition-tlimit 30 " 

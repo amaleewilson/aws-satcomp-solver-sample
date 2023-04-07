@@ -15,5 +15,5 @@ RUN git fetch
 RUN git checkout new-partitioning
 RUN git pull
 # Checkout the latest partitioning branch? 
-RUN ./configure.sh debug --auto-download --static --static-binary --assertions --debug-symbols --tracing
+RUN ./configure.sh debug --asan --auto-download --static --static-binary --assertions --debug-symbols --tracing
 RUN cd build && make -j4 && cd ..

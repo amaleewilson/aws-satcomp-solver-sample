@@ -17,7 +17,7 @@ echo $2
 
 # Goal: run four partitions on 2 workers 
 # Trying to increase number of slots in the hostfile. 
-mpiexec -n 17 --mca btl_tcp_if_include eth0  --allow-run-as-root \
+mpiexec -n 129 --mca btl_tcp_if_include eth0  --allow-run-as-root \
  --hostfile $1  --report-bindings \
  python3.8 /competition/replace_solver.py /competition/cvc5 $2 $1
 
